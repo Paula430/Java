@@ -1,3 +1,5 @@
+package entities;
+
 import java.util.Objects;
 
 public abstract class Animal {
@@ -6,10 +8,27 @@ public abstract class Animal {
     protected double weight;
     protected String color;
     protected int age;
+    public static int numberOfAnimal;
 
-    public abstract void makeSound();
-    public void eat() {
+    static{
+        numberOfAnimal=0;
+        System.out.println("Animal class loaded. Initializing number of animal: " + numberOfAnimal);
+    }
+
+    public void eat(){
         System.out.println("Animal is eating");
+    }
+
+    public Animal() {
+        numberOfAnimal++;
+    }
+
+    public static int getNumberOfAnimal(){
+        return numberOfAnimal;
+    }
+
+    public final void breathe(){
+        System.out.println("Animal is breathing");
     }
 
     @Override

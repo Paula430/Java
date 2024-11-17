@@ -1,20 +1,30 @@
+package entities;
+
+import interfaces.IMakeSound;
+import interfaces.IRun;
+import interfaces.ISleep;
+
 import java.util.Objects;
 
-public class Horse extends Animal {
-    private HorseBreed breed;
+public final class Horse extends Animal implements ISleep, IRun, IMakeSound {
+    private final HorseBreed breed;
     public boolean isRaceHorse;
+    public int speed;
 
-    public Horse(String name, double weight, HorseBreed breed, String color, boolean isRaceHorse, int age) {
+
+    public Horse(String name, double weight, HorseBreed breed, String color, boolean isRaceHorse, int age, int speed) {
         this.name=name;
         this.breed=breed;
         this.color=color;
         this.isRaceHorse=isRaceHorse;
+        this.speed=speed;
 
-        if(weight<0 && weight>1000) {
+        if(weight>0 && weight<1000) {
+            this.weight=weight;
+
+        }else {
             System.out.println("Invalid weight, enter weight in range (0, 1000]");
             this.weight=1;
-        }else {
-            this.weight=weight;
         }
 
         if(age<0) {
@@ -24,10 +34,22 @@ public class Horse extends Animal {
             this.age=age;
         }
 
+        if(speed<0) {
+            System.out.println("Age should be positive value.");
+            this.speed=1;
+        }else {
+            this.speed=speed;
+        }
 
     }
 
-    public Horse() {
+    public Horse(HorseBreed breed) {
+        this.breed = breed;
+    }
+
+    @Override
+    public void sleepDuration() {
+        System.out.println("Horse " + this.name + " is sleeping " + SLEEP_DURATION + "hours");
 
     }
 
@@ -53,27 +75,23 @@ public class Horse extends Animal {
 
     @Override
     public String toString() {
-        return "Horse [breed=" + breed + ", isRaceHorse=" + isRaceHorse + ", name=" + name + ", weight=" + weight
+        return "entities.Horse [breed=" + breed + ", isRaceHorse=" + isRaceHorse + ", name=" + name + ", weight=" + weight
                 + ", color=" + color + ", age=" + age + "]";
+    }
+
+
+    @Override
+    public void runningSpeed() {
+        System.out.println("Horse " + this.name + " is running with speed " + this.speed);
     }
 
     @Override
     public void eat() {
-        System.out.println("Horse is eating");
+        System.out.println("Horse " + this.name + " is eating");
     }
-
-    @Override
-    public void makeSound() {
-        System.out.println("Hourse's sound");
-    }
-
 
     public HorseBreed getBreed() {
         return breed;
-    }
-
-    public void setBreed(HorseBreed breed) {
-        this.breed = breed;
     }
 
     public String getColor() {

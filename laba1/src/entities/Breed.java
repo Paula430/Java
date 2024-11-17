@@ -1,8 +1,9 @@
+package entities;
+
 import java.util.Objects;
 
 public abstract class Breed {
     protected String name;
-    abstract void printBreed();
 
     @Override
     public int hashCode() {

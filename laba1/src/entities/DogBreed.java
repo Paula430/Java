@@ -1,3 +1,5 @@
+package entities;
+
 import java.util.Objects;
 
 public class DogBreed extends Breed {
@@ -13,15 +15,8 @@ public class DogBreed extends Breed {
     }
 
     @Override
-    public void printBreed() {
-        System.out.println("Dog Breed name: " + name);
-        System.out.println("Dog size : " + size);
-    }
-
-
-    @Override
     public String toString() {
-        return "DogBreed [size=" + size + ", name=" + name + "]";
+        return "entities.DogBreed [size=" + size + ", name=" + name + "]";
     }
 
     @Override

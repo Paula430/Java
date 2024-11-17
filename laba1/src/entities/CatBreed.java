@@ -1,6 +1,8 @@
+package entities;
+
 import java.util.Objects;
 
-public class CatBreed extends Breed{
+public class CatBreed extends Breed {
     private String characteristic;
 
     public CatBreed(String name, String characteristic) {
@@ -13,14 +15,8 @@ public class CatBreed extends Breed{
     }
 
     @Override
-    public void printBreed() {
-        System.out.println("Cat Breed name: " + name);
-        System.out.println("Cat characteristic : " + characteristic);
-    }
-
-    @Override
     public String toString() {
-        return "CatBreed [characteristic=" + characteristic + ", name=" + name + "]";
+        return "entities.CatBreed [characteristic=" + characteristic + ", name=" + name + "]";
     }
 
     @Override

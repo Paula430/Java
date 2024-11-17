@@ -1,20 +1,28 @@
+package entities;
+
+import interfaces.IMakeSound;
+import interfaces.IRun;
+import interfaces.ISleep;
+
 import java.util.Objects;
 
-public class Dog extends Animal {
-    private DogBreed breed;
+public final class Dog extends Animal implements IRun, ISleep, IMakeSound {
+    private final DogBreed breed;
     public boolean isTrained=false;
+    public int speed;
 
-    public Dog(String name, double weight, DogBreed breed, String color, boolean isTrained, int age) {
+    public Dog(String name, double weight, DogBreed breed, String color, boolean isTrained, int age, int speed) {
         this.name=name;
         this.breed=breed;
         this.color=color;
         this.isTrained=isTrained;
+        this.speed=speed;
 
-        if(weight<0 && weight>100) {
+        if(weight>0 && weight<100) {
+            this.weight=weight;
+        }else {
             System.out.println("Invalid weight, enter weight in range (0 100]");
             this.weight=1;
-        }else {
-            this.weight=weight;
         }
 
         if(age<0) {
@@ -23,26 +31,46 @@ public class Dog extends Animal {
         }else {
             this.age=age;
         }
+
+        if(speed<0) {
+            System.out.println("Age should be positive value.");
+            this.speed=1;
+        }else {
+            this.speed=speed;
+        }
     }
 
-    public Dog() {
-
+    public Dog(DogBreed breed) {
+        this.breed = breed;
     }
+
+
 
     @Override
-    public String toString() {
-        return "Dog [breed=" + breed + ", isTrained=" + isTrained + ", name=" + name + ", weight=" + weight + ", color="
-                + color + ", age=" + age + "]";
+    public void runningSpeed() {
+        System.out.println("Dog " + this.name + " is running with speed " + this.speed);
     }
 
     @Override
     public void eat() {
-        System.out.println("Dog is eating");
+        System.out.println("Dog " + this.name + " is eating");
+    }
+
+    @Override
+    public String toString() {
+        return "entities.Dog [breed=" + breed + ", isTrained=" + isTrained + ", name=" + name + ", weight=" + weight + ", color="
+                + color + ", age=" + age + "]";
+    }
+
+    @Override
+    public void sleepDuration() {
+        System.out.println("Dog " + this.name + " is sleeping " + SLEEP_DURATION + "hours");
+
     }
 
     @Override
     public void makeSound() {
-        System.out.println("Dog's sound");
+        System.out.println("Dog "+ this.name + " is barking");
     }
 
     @Override
@@ -69,10 +97,6 @@ public class Dog extends Animal {
         return breed;
     }
 
-    public void setBreed(DogBreed breed) {
-        this.breed = breed;
-    }
-
     public String getColor() {
         return color;
     }
@@ -96,5 +120,6 @@ public class Dog extends Animal {
     public void setWeight(double weight) {
         this.weight=weight;
     }
+
 
 }
