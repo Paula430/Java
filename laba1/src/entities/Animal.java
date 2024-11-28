@@ -23,6 +23,7 @@ public abstract class Animal {
         numberOfAnimal++;
     }
 
+
     public static int getNumberOfAnimal(){
         return numberOfAnimal;
     }

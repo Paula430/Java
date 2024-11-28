@@ -66,7 +66,7 @@ public final class Cat extends Animal implements IRun, ISleep, IMakeSound {
     @Override
     public String toString() {
         return "entities.Cat [breed=" + breed + ", name=" + name + ", weight=" + weight + ", color=" + color + ", age=" + age
-                + "]";
+                + ", speed=" + speed + "]";
     }
 
     @Override
